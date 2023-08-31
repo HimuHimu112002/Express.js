@@ -74,6 +74,74 @@ app.get("/cookd", function(req, res) {
 
 })
 
+// =================== query===================
+
+// query oparation section
+app.get("/query", function(req, res) {
+    let firstName = req.query.firstName;
+    let lastName = req.query.lastName;
+    res.end(lastName+" "+firstName )
+    //localhost:8000?firstName=himu&lastName=md
+
+})
+
+
+app.get("/header", function(req, res) {
+
+    let firstName = req.header('firstName');
+    let lastName = req.header('lastName');
+    res.end(lastName+" "+firstName )
+
+})
+
+app.get("/user", function(req, res) {
+
+    let firstName = req.header('User-Agent');
+    res.end(firstName)
+
+})
+
+//============================= POST ================================
+
+app.post("/simple1", function(req, res) {
+    res.send("This is post")
+})
+
+// query oparation section
+app.post("/simple2", function(req, res) {
+    let firstName = req.query.firstName;
+    let lastName = req.query.lastName;
+    res.send(firstName+" "+lastName )
+    //localhost:8000?firstName=himu&lastName=md
+
+})
+
+
+app.post("/simple3", function(req, res) {
+    let firstName = req.header('firstName');
+    let lastName = req.header('lastName');
+    res.send(lastName+" "+firstName )
+
+})
+
+
+app.post("/simple4", function(req, res) {
+
+    let myarray = [
+        {
+            name: "himu",
+            age: "25"
+        }
+    ]
+    res.json(myarray)
+})
+
+app.post("/simple5", function(req, res) {
+    let JsonData = req.body;
+    let JsonString = JSON.stringify(JsonData);
+    res.send(JsonString)
+})
+
 
 app.listen(8000, function() {
     console.log("Server is running")
